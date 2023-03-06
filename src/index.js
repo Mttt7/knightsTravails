@@ -1,10 +1,7 @@
-function component() {
-    const element = document.createElement('div');
+import './styles/style.css'
+import drawBoard from './drawing';
+
+const container = document.querySelector('#container')
+
   
-    // Lodash, currently included via a script, is required for this line to work
-    element.innerHTML ='hello'
-  
-    return element;
-  }
-  
-  document.body.appendChild(component());
+container.appendChild(drawBoard());
