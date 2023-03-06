@@ -1,25 +1,39 @@
-function CellHoverEffectIn(e){
+import findPath from "./algorithm"
+import { move } from "./globalFunctions"
+import { convertToChessNotation } from "./globalFunctions"
+
+function cellHoverEffectIn(e){
     let str = e.target.dataset.cellId
     e.target.innerText=convertToChessNotation(str)
     
 }
-function CellHoverEffectOut(e){
+function cellHoverEffectOut(e){
     e.target.innerText=''
 }
 
-//move to global functions.js?
-function convertToChessNotation(str){
+function handleCellClick(e){
+    let str = e.target.dataset.cellId
     const patternX = /[0-9]*/
     const patternY = /[-][0-9]*/
     let x_c = patternX.exec(str)
     let y_c = patternY.exec(str)
-    const letters = ['H','G','F','E','D','C','B','A']
-    let x = letters[x_c]
-    let y = Number(y_c[0].slice(1))+1 
-    
-    return x+y
-}
+    let x = x_c[0]
+    let y = Number(y_c[0].slice(1))
 
+    const startDisplay = document.querySelector('.start-display')
+    const stopDisplay = document.querySelector('.stop-display')
+    const numberOfMovesDisplay = document.querySelector('.number-of-moves-display')
+   
+    if(move.length===0){
+        startDisplay.innerText = convertToChessNotation(str)
+        move.push(x,y)
+    }else{
+        move.push(x,y)
+        stopDisplay.innerText = findPath(move)
+    }
+    
+    
+}
 
 export default function drawBoard(){
 const boardEl = document.createElement('div')
@@ -32,8 +46,9 @@ boardEl.classList.add('board')
             if(i%2===j%2) cell.classList.add('white')
             else cell.classList.add('black')
             cell.dataset.cellId = `${j}-${i}`
-            cell.addEventListener('mouseover',CellHoverEffectIn)
-            cell.addEventListener('mouseout',CellHoverEffectOut)
+            cell.addEventListener('mouseover',cellHoverEffectIn)
+            cell.addEventListener('mouseout',cellHoverEffectOut)
+            cell.addEventListener('click',handleCellClick)
             boardEl.appendChild(cell)
         }
     }

@@ -44,6 +44,14 @@ body {
   align-items: center;
   justify-content: center;
 }
+.menu-wrapper > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 25px;
+}
 .menu-wrapper .start-display {
   width: 60%;
   height: 60px;
@@ -57,7 +65,7 @@ body {
 .menu-wrapper .stop-display {
   width: 60%;
   height: 60px;
-  background-color: yellow;
+  background-color: purple;
 }
 
 html, body, div, span, applet, object, iframe,
