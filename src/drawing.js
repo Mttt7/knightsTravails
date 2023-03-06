@@ -4,11 +4,10 @@ function CellHoverEffectIn(e){
     
 }
 function CellHoverEffectOut(e){
-    
     e.target.innerText=''
-    
 }
 
+//move to global functions.js?
 function convertToChessNotation(str){
     const patternX = /[0-9]*/
     const patternY = /[-][0-9]*/
@@ -43,7 +42,21 @@ boardEl.classList.add('board')
 }
 
 export function drawMenu(){
+    const menuWrapper = document.createElement('div')
+        menuWrapper.classList.add('menu-wrapper')
+    const startDisplay = document.createElement('div')
+        startDisplay.classList.add('start-display')
+    const numberOfMovesDisplay = document.createElement('div')
+        numberOfMovesDisplay.classList.add('number-of-moves-display')
+    const stopDisplay = document.createElement('div')
+        stopDisplay.classList.add('stop-display')
+    menuWrapper.appendChild(startDisplay)
+    menuWrapper.appendChild(numberOfMovesDisplay)
+    menuWrapper.appendChild(stopDisplay)
 
+
+
+    return menuWrapper
 }
 
 export function drawHeader(){

@@ -8,14 +8,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
 }
 
 .board {
   border: solid 2px black;
-  height: 640px;
+  height: 600px;
   display: grid;
-  grid-template-columns: repeat(8, 80px);
-  grid-template-rows: repeat(8, 80px);
+  grid-template-columns: repeat(8, 75px);
+  grid-template-rows: repeat(8, 75px);
 }
 .board .cell {
   font-family: "Ubuntu", sans-serif;
@@ -32,6 +33,31 @@ body {
 .board .cell.white {
   background-color: white;
   color: black;
+}
+
+.menu-wrapper {
+  width: 400px;
+  height: 400px;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.menu-wrapper .start-display {
+  width: 60%;
+  height: 60px;
+  background-color: blue;
+}
+.menu-wrapper .number-of-moves-display {
+  width: 60%;
+  height: 60px;
+  background-color: green;
+}
+.menu-wrapper .stop-display {
+  width: 60%;
+  height: 60px;
+  background-color: yellow;
 }
 
 html, body, div, span, applet, object, iframe,

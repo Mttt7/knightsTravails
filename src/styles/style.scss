@@ -7,15 +7,16 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
 
 
 .board{
     border: solid 2px black;
-    height: calc(8*80px);
+    height: calc(8*75px);
     display: grid;
-    grid-template-columns: repeat(8,80px);
-    grid-template-rows: repeat(8,80px);
+    grid-template-columns: repeat(8,75px);
+    grid-template-rows: repeat(8,75px);
     
     .cell{
         font-family: 'Ubuntu', sans-serif;
@@ -33,6 +34,32 @@ body{
     .cell.white{
         background-color: white;
         color: black;
+    }
+}
+
+.menu-wrapper{
+    width: 400px;
+    height: 400px;
+    background-color: red;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .start-display{
+        width: 60%;
+        height: 60px;
+        background-color: blue;
+    }
+    .number-of-moves-display{
+        width: 60%;
+        height: 60px;
+        background-color: green;
+    }
+    .stop-display{
+        width: 60%;
+        height: 60px;
+        background-color: yellow;
     }
 }
 
