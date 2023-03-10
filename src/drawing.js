@@ -34,7 +34,10 @@ boardEl.classList.add('board')
             cell.classList.add('cell')
             if(i%2===j%2) cell.classList.add('white')
             else cell.classList.add('black')
-            cell.dataset.cellId = `${j}-${i}`
+            if(color==='white') cell.dataset.cellId = `${j}-${i}`
+            else{
+                cell.dataset.cellId = `${7-j}-${7-i}`
+            }
             cell.addEventListener('mouseover',cellHoverEffectIn)
             cell.addEventListener('mouseout',cellHoverEffectOut)
             cell.addEventListener('click',handleCellClick)

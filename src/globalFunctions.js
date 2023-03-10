@@ -5,7 +5,7 @@ export let move = []
 
 
 export function convertToChessNotation(str,color){
-    console.log(color)
+    
     const patternX = /[0-9]*/
     const patternY = /[-][0-9]*/
     let x_c = patternX.exec(str)
