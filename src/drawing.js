@@ -1,10 +1,18 @@
 import findPath from "./algorithm"
-import { move } from "./globalFunctions"
+import { move, reloadPage } from "./globalFunctions"
 import { convertToChessNotation } from "./globalFunctions"
+import refreshImg from './images/refresh.png'
+
+let color = 'white'
+function rotateBoard(){
+    if(color==='white') color='black'
+    else if(color==='black') color='white'
+    reloadPage()
+}
 
 function cellHoverEffectIn(e){
     let str = e.target.dataset.cellId
-    e.target.innerText=convertToChessNotation(str)
+    e.target.innerText=convertToChessNotation(str,color)
     
 }
 function cellHoverEffectOut(e){
@@ -12,33 +20,14 @@ function cellHoverEffectOut(e){
 }
 
 function handleCellClick(e){
-    let str = e.target.dataset.cellId
-    const patternX = /[0-9]*/
-    const patternY = /[-][0-9]*/
-    let x_c = patternX.exec(str)
-    let y_c = patternY.exec(str)
-    let x = x_c[0]
-    let y = Number(y_c[0].slice(1))
-
-    const startDisplay = document.querySelector('.start-display')
-    const stopDisplay = document.querySelector('.stop-display')
-    const numberOfMovesDisplay = document.querySelector('.number-of-moves-display')
    
-    if(move.length===0){
-        startDisplay.innerText = convertToChessNotation(str)
-        move.push(x,y)
-    }else{
-        move.push(x,y)
-        stopDisplay.innerText = findPath(move)
-    }
-    
     
 }
 
 export default function drawBoard(){
 const boardEl = document.createElement('div')
 boardEl.classList.add('board')
-
+    
     for(let i=0;i<8;i++){
         for(let j=0;j<8;j++){
             const cell = document.createElement('div')
@@ -65,9 +54,16 @@ export function drawMenu(){
         numberOfMovesDisplay.classList.add('number-of-moves-display')
     const stopDisplay = document.createElement('div')
         stopDisplay.classList.add('stop-display')
+    const rotateBoardBtn = document.createElement('div')
+        rotateBoardBtn.classList.add('rotate-board-btn')
+        const rotateBoardBtnImg = document.createElement('img')
+        rotateBoardBtnImg.src=refreshImg
+        rotateBoardBtn.appendChild(rotateBoardBtnImg)
+        rotateBoardBtnImg.addEventListener('click',rotateBoard)
     menuWrapper.appendChild(startDisplay)
     menuWrapper.appendChild(numberOfMovesDisplay)
     menuWrapper.appendChild(stopDisplay)
+    menuWrapper.appendChild(rotateBoardBtn)
 
 
 

@@ -1,0 +1,103 @@
+import Tree from "./BST"
+
+export default function findPath(move){
+    for(let i = 0;i<move.length;i++){
+        move[i] = Number(move[i])
+    }
+
+    let start = move.splice(0,2)
+    let stop = move.splice(0,2)
+    
+    let startCopy = start.slice()
+    let stopCopy = stop.slice()
+
+    let moves = knightMoves(start)
+    let tree = new Tree(moves)
+    
+    tree.print()
+    while(tree.search(coordinateToId(stop))===null){
+        
+        let next = tree.inOrder()
+        for(let i=0;i<next.length;i++){
+            let m = knightMoves(idToCoordinate(next[i]))
+            for(let j = 0;j<m.length;j++){
+                tree.insertValue(m[j])
+                //if(!tree.isBalanced()) tree.rebalance()
+            }
+        }
+        
+    }
+
+    let found = tree.search(coordinateToId(stop))
+    console.log(found)
+    console.log(tree.height(found))
+
+
+
+    console.log(coordinatesToIds([[5,3],[7,0],[6,7]]))
+    
+
+
+    
+
+    return 'H5'
+}
+//coordinate=>id
+function coordinateToId(arr){ //ok
+    let id = (arr[1])*8 + (arr[0] )
+    return id
+}
+
+function idToCoordinate(id){ //ok
+    let y = Math.floor(id/8)
+    let x = id%8
+    let arr=[x,y]
+    console.log(arr)
+    return arr
+}
+
+//array of coordinates => array of ids
+function coordinatesToIds(arr){ //ok
+    let ids = []
+    for(let i=0;i<arr.length;i++){
+        let id = (arr[i][1])*8 + (arr[i][0] )
+        
+        ids.push(id)
+    }
+    return ids
+}
+
+function knightMoves(start){
+    console.log('arr:',start)
+    let x=start[0]
+    let y=start[1]
+    console.log('x:',x)
+    console.log('y:',y)
+    let moves = []
+    if(x-1>=0){
+        if(y-2>=0) moves.push([x-1,y-2])
+        if(y+2<=7) moves.push([x-1,y+2])
+    }
+    if(x+1<=7){
+        if(y-2>=0) moves.push([x+1,y-2])
+        if(y+2<=7) moves.push([x+1,y+2])
+    }
+    if(x+2<=7){
+        if(y-1>=0) moves.push([x+2,y-1])
+        if(y+1<=7) moves.push([x+2,y+1])
+    }
+    if(x-2>=0){
+        if(y-1>=0) moves.push([x-2,y-1])
+        if(y+1<=7) moves.push([x-2,y+2])
+    }
+    
+    return coordinatesToIds(moves)
+}
+
+
+
+
+
+
+
+

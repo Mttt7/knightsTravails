@@ -67,6 +67,19 @@ body {
   height: 60px;
   background-color: purple;
 }
+.menu-wrapper .rotate-board-btn {
+  width: 60%;
+  height: 60px;
+  background-color: aqua;
+}
+.menu-wrapper .rotate-board-btn img {
+  width: 30px;
+}
+.menu-wrapper .rotate-board-btn img:hover {
+  transform: rotate(360deg);
+  transition: 0.9s;
+  cursor: pointer;
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
